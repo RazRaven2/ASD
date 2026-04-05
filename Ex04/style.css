@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap");
+
+:root {
+  --bg-base: #111412;
+  --bg-sand: #1a1f1b;
+  --bg-panel: rgba(24, 30, 27, 0.86);
+  --bg-panel-strong: rgba(15, 19, 17, 0.94);
+  --line-faint: rgba(163, 178, 156, 0.22);
+  --line-bright: rgba(196, 214, 188, 0.4);
+  --text-main: #e5ebe3;
+  --text-muted: #afbaae;
+  --accent-rust: #a8693b;
+  --accent-moss: #7f9473;
+  --shadow-deep: 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(124, 90, 58, 0.18), transparent 44%),
+    radial-gradient(circle at 82% 8%, rgba(91, 109, 84, 0.22), transparent 40%),
+    radial-gradient(circle at 68% 78%, rgba(133, 98, 66, 0.14), transparent 42%),
+    linear-gradient(160deg, #0f110f 0%, #191d1a 48%, #111512 100%);
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    120deg,
+    rgba(222, 229, 220, 0.02),
+    rgba(222, 229, 220, 0.02) 2px,
+    transparent 2px,
+    transparent 7px
+  );
+  opacity: 0.3;
+}
+
+a {
+  color: inherit;
+}
+
+.page-wrap {
+  width: min(1080px, 92%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  margin-top: 1rem;
+  border: 1px solid var(--line-faint);
+  background: var(--bg-panel-strong);
+  border-radius: 14px;
+  box-shadow: var(--shadow-deep);
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.brand {
+  font-family: "Cinzel", Georgia, serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.menu-toggle {
+  position: absolute;
+  right: 1rem;
+  top: 0.75rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin: 0;
+  opacity: 0;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.menu-button {
+  display: none;
+  margin-left: auto;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid var(--line-bright);
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(87, 102, 82, 0.14);
+}
+
+.menu-button span,
+.menu-button span::before,
+.menu-button span::after {
+  display: block;
+  width: 1.35rem;
+  height: 2px;
+  background: var(--text-main);
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+.menu-button span::before,
+.menu-button span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-button span::before {
+  top: -0.4rem;
+}
+
+.menu-button span::after {
+  top: 0.4rem;
+}
+
+.site-nav {
+  margin-left: auto;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.site-nav a {
+  display: block;
+  text-decoration: none;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  border-color: var(--line-bright);
+  color: var(--text-main);
+  background: rgba(130, 148, 122, 0.13);
+}
+
+.home .link-home,
+.chapter1 .link-c1,
+.chapter2 .link-c2,
+.chapter3 .link-c3,
+.chapter4 .link-c4 {
+  border-color: var(--line-bright);
+  color: var(--text-main);
+  background: rgba(168, 105, 59, 0.2);
+}
+
+.hero,
+.chapter-shell {
+  margin-top: 1.3rem;
+  border: 1px solid var(--line-faint);
+  border-radius: 18px;
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-deep);
+  padding: clamp(1.2rem, 2vw, 1.8rem);
+}
+
+h1,
+h2 {
+  font-family: "Cinzel", Georgia, serif;
+  margin-top: 0;
+  line-height: 1.18;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  margin-bottom: 0.6rem;
+}
+
+p {
+  line-height: 1.6;
+  margin: 0;
+}
+
+.hero p {
+  max-width: 68ch;
+  color: var(--text-muted);
+}
+
+.chapter-grid {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.8rem;
+}
+
+.chapter-card {
+  text-decoration: none;
+  border: 1px solid var(--line-faint);
+  border-radius: 12px;
+  padding: 0.95rem;
+  background: rgba(13, 16, 14, 0.56);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.chapter-card:hover,
+.chapter-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--line-bright);
+  background: rgba(38, 46, 40, 0.64);
+}
+
+.chapter-card h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.chapter-card p {
+  color: var(--text-muted);
+  font-size: 0.97rem;
+}
+
+.image-stack {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.image-stack figure {
+  margin: 0;
+}
+
+.image-stack img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line-faint);
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+}
+
+.image-stack figcaption {
+  color: var(--text-muted);
+  margin-top: 0.45rem;
+  font-size: 0.95rem;
+}
+
+.chapter-description {
+  margin-top: 1rem;
+  border-left: 3px solid var(--accent-rust);
+  padding: 0.85rem 0.95rem;
+  background: rgba(168, 105, 59, 0.09);
+  color: var(--text-main);
+}
+
+.footnote {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin: 1rem 0 2rem;
+  text-align: center;
+}
+
+@media (max-width: 840px) {
+  .menu-button {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    margin-left: 0;
+    transition: max-height 0.25s ease;
+  }
+
+  .site-header {
+    flex-wrap: wrap;
+    padding-right: 4rem;
+  }
+
+  .site-nav ul {
+    padding-top: 0.4rem;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .site-nav a {
+    width: 100%;
+  }
+
+  .menu-toggle:checked ~ .site-nav {
+    max-height: 14rem;
+  }
+
+  .menu-toggle:checked + .menu-button span {
+    background: transparent;
+  }
+
+  .menu-toggle:checked + .menu-button span::before {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .menu-toggle:checked + .menu-button span::after {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+}
