@@ -30,7 +30,7 @@ def make_movie_list(results):
         movies.append(make_movie(row))
     return movies
 
-def get_categories() -> list[Category]:
+def get_categories():
     query = '''SELECT categoryID, name as categoryName
                FROM Category'''
     with closing(conn.cursor()) as c:
@@ -42,7 +42,7 @@ def get_categories() -> list[Category]:
         categories.append(make_category(row))
     return categories
 
-def get_category(category_id: int) -> Category | None:
+def get_category(category_id):
     query = '''SELECT categoryID, name AS categoryName
                FROM Category WHERE categoryID = ?'''
     with closing(conn.cursor()) as c:
@@ -53,7 +53,7 @@ def get_category(category_id: int) -> Category | None:
         else:
             return None
 
-def get_movies_by_category(category_id: int) -> list[Movie]:
+def get_movies_by_category(category_id):
     query = '''SELECT movieID, Movie.name, year, minutes,
                       Movie.categoryID,
                       Category.name as categoryName
@@ -66,7 +66,7 @@ def get_movies_by_category(category_id: int) -> list[Movie]:
 
     return make_movie_list(results)
 
-def get_movies_by_year(year: int) -> list[Movie]:
+def get_movies_by_year(year):
     query = '''SELECT movieID, Movie.name, year, minutes,
                       Movie.categoryID,
                       Category.name as categoryName
@@ -79,7 +79,7 @@ def get_movies_by_year(year: int) -> list[Movie]:
 
     return make_movie_list(results)
 
-def add_movie(movie: Movie) -> None:
+def add_movie(movie):
     sql = '''INSERT INTO Movie (categoryID, name, year, minutes) 
              VALUES (?, ?, ?, ?)'''
     with closing(conn.cursor()) as c:
@@ -87,14 +87,7 @@ def add_movie(movie: Movie) -> None:
                         movie.minutes))
         conn.commit()
 
-def add_category(name: str) -> None:
-    sql = '''INSERT INTO Category (name) 
-             VALUES (?)'''
-    with closing(conn.cursor()) as c:
-        c.execute(sql, (name,))
-        conn.commit()
-
-def delete_movie(movie_id: int) -> None:
+def delete_movie(movie_id):
     sql = '''DELETE FROM Movie WHERE movieID = ?'''
     with closing(conn.cursor()) as c:
         c.execute(sql, (movie_id,))
