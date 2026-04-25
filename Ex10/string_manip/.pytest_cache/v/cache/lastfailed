@@ -1,0 +1,5 @@
+{
+  "test_string_manip.py::test_reverse_string": true,
+  "test_string_manip.py::test_capitalize_words": true,
+  "test_string_manip.py::test_capitalize_words_non_string_arguments": true
+}
